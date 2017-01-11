@@ -1,0 +1,74 @@
+Amazon EC2
+
+1)It is the foundation of many other AWS services(Relational Database Service,ElastiCache,Elastic Beanstalk,Redshift,EBS)
+2)Virtual machine service that runs software of our choice
+3)Additional Features - Elastic IP,Load Balancers,Auto scaling group
+
+Security Group - Defines allowed incoming/outgoing IP addresses and ports.Kind of like a mini-firewall.
+Security Groups are attached at the instance level,and can be shared among different instances
+VPC uses routing tables to configure routing destinations for traffic coming out of VPC
+Another tool VPC uses for network control is Network Access Control List(NACL).Each VPC has one NACL which act as filtering table,which allows which IPs are allowed through VPC for incoming and outgoing traffic.
+A VPC defines a private isolated area for instances
+Instances cannot be launched into VPC.They must be launched into subnets which is inside VPC.
+A Subnet is additional isolated area that has its own CIDR block,Routing table and Access control List
+Public Subnet - Public access to the internet
+Private Subnet - No public access to the internet,and must through a NAT gateway to access the outer world.
+
+
+4)Creating a VPC
+Default VPC pre-existing when you create AWS account.
+	a)Select a VPC configuration
+		VPC with single public subnet
+		VPC with public and private subnet
+		VPC with public and private subnet and hardware VPN access
+		VPC with public private subnet and hardware VPN access
+		
+	b)VPC with a single subnet - 
+		IP CIDR block
+		VPC name
+		Public subnet(CIDR)
+		AZ							-	Physically separated data centres that are connected to other AZ's of the same region. 
+										This is basically to add redundancy in case of disaster.
+		Enable DNS host-name
+		Hardware Tenancy(Default)
+
+Internet Gateway(IG)- It is basically a connection to the internet
+Routing Table by default have no connection with the internet,so we need to add entries to routing table to allow all traffic to internet for public internet.(destination - 0.0.0.0/0  target - IG id)
+
+5)Elastic Cloud Compute
+One of the longest running service of AWS
+EC2 is just a virtual machine with CPU,memory,storage space and n/w performance
+Amazon Machine Image(AMI) - Operating System + Software installed on EC2 instance
+Amazon charge based on type of instance we are using.Instance with more CPU and memory will cost more than that of less.
+Family of instance called Memory optimized - Certain ratio of CPU to memory that favours more memory
+Compute optimized - Ratio favoured to more CPU
+Storage for EC2 instances uses another AWS service called Elastic Block Storage(EBS)
+
+6)Creating EC2 instance
+t2:micro free tier(1 CPU 1GB RAM)
+
+7)Connecting to EC2 instance
+
+Elastic IP are public IP addresses that are created,destroyed and assigned independently.
+Elastic IP are basically public IP addresses that can be associated with instances.If the underline instance is terminated, the elastic IP will still exist,and can be associated with different instance.So we get the public IP  
+
+Connect to EC2 via SSH
+Key-pair file will be PEM file.
+ssh -i <pem-file>  ec2-user@<ec2-ip>
+Convert it to ppk file if we are using putty
+
+
+8)FAQ's
+	a)Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizeable compute capacity in the cloud
+	b)What can I do with Amazon EC2?
+	Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.Pay only for what we use.
+	c) What is the difference between using the local instance store and Amazon Elastic Block storage (Amazon EBS) for the root device?
+	By using Amazon EBS, data on the root device will persist independently from the lifetime of the instance. This enables you to stop and restart the instance at a subsequent time, which is similar to shutting down your laptop and restarting it when you need it again.
+	The local instance store only persists during the life of the instance.This is an inexpensive way to launch instances where data is not stored to the root device.
+	
+
+
+
+
+		
+		

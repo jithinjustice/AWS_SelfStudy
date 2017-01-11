@@ -1,0 +1,60 @@
+Amazon ELB
+	Elastic Load Balancing distributes incoming application traffic across multiple EC2 instances, in multiple Availability Zones. This increases the fault tolerance of your applications.
+	Elastic Load Balancing supports two types of load balancers: Application Load Balancers and Classic Load Balancers	
+
+Purpose of ELB
+	High availability
+	Automatic Scaling
+	Robust Security
+	
+Two types of ELB
+	a)Classic Load Balancer - Based on either application or network level information.It is suitable for simple load balancing
+	b)Application Load Balancer - Based on advanced application level information that includes the content of the request.It is ideal for applications needing advanced routing capabilities, micro-services, and container-based architectures.It offers ability to route traffic to multiple services or load balance across multiple ports on the same EC2 instance.
+	
+Advantages of ELB
+	Available
+	Elastic
+	Secure
+
+Use Cases
+	a)Achieving Even Better Fault Tolerance for Your Applications
+	b)DNS Fail-over for Elastic Load Balancing
+	You can use Amazon Route 53 health checking and DNS fail-over features to enhance the availability of the applications running behind Elastic Load Balancers
+	
+Pricing
+	For the Classic Load Balancer, you are charged for each hour or partial hour your load balancer is running and for each GB of data transferred. 
+	For Application load balancer, you are charged for each hour or partial hour your load balancer is running and the number of Load Balancer Capacity Units (LCU) used per hour. 
+	
+	Classic Load Balancer -  US East(N. Virginia)
+	$0.025 per Elastic Load Balancer-hour (or partial hour)
+	$0.008 per GB of data processed by an Elastic Load Balancer
+	
+	Application load balancer - US East(N. Virginia)
+	$0.0225 per Application Load Balancer-hour (or partial hour)
+	$0.008 per LCU-hour (or partial hour)
+	
+How ELB works & Availability Zones and Instances
+	A listener is a process that checks for connection requests.It is configured with a protocol and port number for connections from clients to the load balancer and a protocol and port number for connections from the load balancer to the instances.
+	With a Classic Load Balancer, you register instances with the load balancer. With an Application Load Balancer, you register the instances as targets in a target group, and route traffic to a target group.
+	With a Classic Load Balancer, we recommend that you enable multiple Availability Zones.
+	With an Application Load Balancer, we require you to enable multiple Availability Zones.
+	After you enable multiple Availability Zones, if one Availability Zone becomes unavailable or has no healthy instances, the load balancer can continue to route traffic to the healthy registered instances in another Availability Zone.
+	Cross-zone load balancing is always enabled for an Application Load Balancer and is disabled by default for a Classic Load Balancer. 
+	
+Routing Algorithm
+	With a Classic Load Balancer, the load balancer node that receives the request selects a registered instance using the round robin routing algorithm for TCP listeners and the least outstanding requests routing algorithm for HTTP and HTTPS listeners.
+	With an Application Load Balancer, the load balancer node that receives the request selects a registered target from the target group using the round robin routing algorithm. Routing is performed independently for each target group, even when a target is registered with multiple target groups.	
+
+Load Balancer Scheme
+Load balancer can be of two types :- Internet-facing and internal Load Balancer 
+The nodes of an Internet-facing load balancer have public IP addresses.Internet-facing load balancers can route requests from clients over the Internet.
+The nodes of an internal load balancer have only private IP addresses. internal load balancers can only route requests from clients with access to the VPC for the load balancer.
+both Internet-facing and internal load balancers route requests to your instances using private IP addresses
+
+Different types of Load Balancing Algorithms
+	Round Robin – Requests are distributed across the group of servers sequentially.
+	Least Connections – A new request is sent to the server with the fewest current connections to clients. The relative computing capacity of each server is factored into determining which one has the least connections.
+	IP Hash – The IP address of the client is used to determine which server receives the request.
+	Source IP Hash - It 
+
+
